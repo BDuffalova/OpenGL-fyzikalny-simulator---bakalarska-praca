@@ -1,0 +1,3 @@
+C:/Users/duffa/OneDrive/Počítač/fei/openGL/BP/Fyzikalny-simulator-zrazky/Dependencies/GLM/glm/out/build/x64-Debug/CMakeFiles/glm_dummy.dir
+C:/Users/duffa/OneDrive/Počítač/fei/openGL/BP/Fyzikalny-simulator-zrazky/Dependencies/GLM/glm/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/duffa/OneDrive/Počítač/fei/openGL/BP/Fyzikalny-simulator-zrazky/Dependencies/GLM/glm/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir

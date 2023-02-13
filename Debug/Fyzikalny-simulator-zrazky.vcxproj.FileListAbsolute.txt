@@ -1,1 +1,2 @@
 C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\OpenGL-fyzikalny-simulator---bakalarska-praca\Fyzikalny-simulator-zrazky\Debug\Fyzikalny-simulator-zrazky.exe
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\Debug\Fyzikalny-simulator-zrazky.exe

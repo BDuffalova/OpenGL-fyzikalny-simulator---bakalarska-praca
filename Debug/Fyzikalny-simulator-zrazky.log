@@ -1,2 +1,6 @@
-﻿  Application.cpp
-  Fyzikalny-simulator-zrazky.vcxproj -> C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\OpenGL-fyzikalny-simulator---bakalarska-praca\Fyzikalny-simulator-zrazky\Debug\Fyzikalny-simulator-zrazky.exe
+﻿  Circle.cpp
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\class_sources\Circle.cpp(26,54): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\class_sources\Circle.cpp(31,18): warning C4305: 'initializing': truncation from 'double' to 'float'
+  test.cpp
+  Generating Code...
+  Fyzikalny-simulator-zrazky.vcxproj -> C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\Debug\Fyzikalny-simulator-zrazky.exe
