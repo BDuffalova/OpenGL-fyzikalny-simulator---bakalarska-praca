@@ -33,6 +33,9 @@
     <ClCompile Include="src\class_sources\Background.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\class_sources\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\class_headers\Shader.h">
@@ -47,5 +50,19 @@
     <ClInclude Include="src\class_headers\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\class_headers\Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\Shaders\shader_fragment_green.txt" />
+    <Text Include="src\Shaders\shader_fragment_red.txt" />
+    <Text Include="src\Shaders\shader_vertex.txt" />
+    <Text Include="src\Shaders\test.txt" />
+    <Text Include="src\shader_codes\shader_green.frag" />
+    <Text Include="src\shader_codes\shader_red.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\shader_codes\shader.vert" />
   </ItemGroup>
 </Project>

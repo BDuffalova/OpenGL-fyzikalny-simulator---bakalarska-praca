@@ -1,120 +1,64 @@
 #include <iostream>
 #include <stdio.h>
+#include <stdlib.h>
+#include <vector>
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <stdlib.h>
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
 #include "class_headers/Circle.h"
-#define NUM_SEGMENTS 36
+#include "class_headers/Mesh.h"
+#include "class_headers/Shader.h"
+
 
 
 
 //const GLint WIDTH = 800, HEIGHT = 600;
-GLuint VAO, VBO;
-GLuint shader, uniformMove;
+std::vector<Mesh*> meshList;
+std::vector<Shader> shaderList;
+GLuint shader1, shader2, uniformMove = 0;
 bool direction = true; //true = right, false = left
 float triOffSet = 0.0f; //offset of drawn triangle
 float triMaxOffSet = 0.7f; //max offset of triangle in scene (-0.7.0.7)
 float triIncrement = 0.0005f; //increment of position in each step
 //GLfloat * vertices;
 
-
-//Vertex shader
-static const char* vShader = "                                \n\
-#version 330                                                  \n\
-                                                              \n\
-layout (location = 0) in vec3 pos;                            \n\
-                                                              \n\
-uniform mat4 model;                                          \n\
-                                                              \n\
-                                                              \n\
-void main()                                                   \n\
-{                                                             \n\
-    gl_Position = model * vec4(0.4 * pos.x, 0.4 * pos.y, pos.z, 1.0); \n\
-}";
-
-static const char* fShader = "                                \n\
-#version 330                                                   \n\
-                                                              \n\
-out vec4 colour;                                              \n\
-                                                              \n\
-void main()                                                   \n\
-{                                                             \n\
-    colour = vec4(1.0, 0.0, 0.0, 1.0);                        \n\
-}";
+float colors[][4] = { {1.f, 0.f, 0.f, 1.f},{0.f, 1.f, 0.f, 1.f} };
 
 
 
-void AddShader(GLuint theProgram, const char* shaderCode, GLenum shaderType)
+
+static const char* vertexShader = "src/shader_codes/shader.vert";
+static const char* fragmentShaderGreen = "src/shader_codes/shader_green.frag";
+static const char* fragmentShaderRed = "src/shader_codes/shader_red.frag";
+
+void CreateShaders()
 {
-    GLuint theShader = glCreateShader(shaderType);
 
-    const GLchar* theCode[1];
-    theCode[0] = shaderCode;
+    Shader* greenCircleShader = new Shader();
 
-    GLint codeLength[1];
-    codeLength[0] = strlen(shaderCode);
+    greenCircleShader->CreateFromFile(vertexShader, fragmentShaderGreen);
 
-    glShaderSource(theShader, 1, theCode, codeLength);
-    glCompileShader(theShader);
+    shaderList.push_back(*greenCircleShader);
 
-    GLint result = 0;
-    GLchar eLog[1024] = { 0 };
-
-    glGetShaderiv(theShader, GL_COMPILE_STATUS, &result);
-    if (!result)
-    {
-        glGetShaderInfoLog(theShader, sizeof(eLog), NULL, eLog);
-        printf("Error compiling the %d shader: '%s'\n", shaderType, eLog);
-        return;
-    }
-
-    glAttachShader(theProgram, theShader);
-
-
-}
-
-void CompileShaders()
-{
-    shader = glCreateProgram();
-    if (!shader) {
-        printf("Error creating shader program!");
-        return;
-    }
-
-    AddShader(shader, vShader, GL_VERTEX_SHADER);
-    AddShader(shader, fShader, GL_FRAGMENT_SHADER);
-
-    GLint result = 0;
-    GLchar eLog[1024] = { 0 };
-
-    glLinkProgram(shader);
-    glGetProgramiv(shader, GL_LINK_STATUS, &result);
-    if (!result)
-    {
-        glGetProgramInfoLog(shader, sizeof(eLog), NULL, eLog);
-        printf("Error linking program: '%s'\n", eLog);
-        return;
-    }
-
-    glValidateProgram(shader);
-    glGetProgramiv(shader, GL_VALIDATE_STATUS, &result);
-    if (!result)
-    {
-        glGetProgramInfoLog(shader, sizeof(eLog), NULL, eLog);
-        printf("Error validating program: '%s'\n", eLog);
-        return;
-    }
-
-    uniformMove = glGetUniformLocation(shader, "model");
 }
 
 int main(void)
 {
     GLFWwindow* window;
-    Circle circle;
+
+    Circle circle1;
+    circle1.initCircle();
+
+    Circle circle2;
+    circle2.initCircle();
+
+    Mesh *objCircle1 = new Mesh();
+    Mesh* objCircle2 = new Mesh();
 
     /* Initialize the library */
     if (!glfwInit())
@@ -123,9 +67,6 @@ int main(void)
         glfwTerminate();
         return 1;
     }
-
-
-
 
     /*setup GLFW window*/
  /*   openGL version, VERSION 3*/
@@ -179,12 +120,13 @@ int main(void)
     glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), positions, GL_STATIC_DRAW);*/
 
     /* Loop until the user closes the window */
-
+    objCircle1->CreateMesh(circle1.getVertices(), NUM_VERTICES);
+    objCircle2->CreateMesh(circle2.getVertices(), NUM_VERTICES);
+    meshList.push_back(objCircle1);
+    meshList.push_back(objCircle2);
+    CreateShaders();
     /*CreateTriangle();*/
-
-    circle.initCircle(&VAO, &VBO);
-
-    CompileShaders();
+    /*CompileShaders(shader2, fShader2);*/
     while (!glfwWindowShouldClose(window))
     {
         /* Poll for and process events, get + handle user inputs*/
@@ -207,44 +149,32 @@ int main(void)
         /* Render here */
         glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
-        glUseProgram(shader);
 
-        glBindVertexArray(VAO);
-        glm::mat4 model2;
-        model2 = glm::translate(model2, glm::vec3(triOffSet, 0.0f, 0.0f));
-
+        shaderList[0].UseShader();
+        uniformMove = shaderList[0].GetModelLocation();
         glm::mat4 model;
-        model = glm::translate(model, glm::vec3(triOffSet, triOffSet, 0.0f));
-        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.0f));
-      
-
-
-        //glUniform1f(uniformMove , triOffSet); //get location of uniform value of xmove and set it to triOffset
-        glUniformMatrix4fv(uniformMove, 1, GL_FALSE, glm::value_ptr(model2)); //FALSE to transpose -> no fliping along the diagonal axis
-
-
-
-        glDrawArrays(GL_TRIANGLE_FAN,0, NUM_SEGMENTS+2);
-
+        model = glm::translate(model, glm::vec3(triOffSet, 0.0f, 0.0f));
         glUniformMatrix4fv(uniformMove, 1, GL_FALSE, glm::value_ptr(model)); //FALSE to transpose -> no fliping along the diagonal axis
 
+        meshList[0]->RenderMesh(shaderList[0].GetShaderID(), colors[0]);
+        glUseProgram(0);
 
+        shaderList[0].UseShader();
+    
+        glm::mat4 model2;
+        uniformMove = shaderList[0].GetModelLocation();
+        model2 = glm::translate(model2, glm::vec3(triOffSet, triOffSet, 0.0f));
+        glUniformMatrix4fv(uniformMove, 1, GL_FALSE, glm::value_ptr(model2)); //FALSE to transpose -> no fliping along the diagonal axis
 
-        glDrawArrays(GL_TRIANGLE_FAN, 0, NUM_SEGMENTS +2);
-
-        glm::mat4 model3;
-        model3 = glm::translate(model3, glm::vec3(0.f, 0.f, 0.0f));
-        glUniformMatrix4fv(uniformMove, 1, GL_FALSE, glm::value_ptr(model3)); //FALSE to transpose -> no fliping along the diagonal axis
-
-        glDrawArrays(GL_LINE_LOOP, NUM_SEGMENTS + 2, 2);
-        glBindVertexArray(0);
+        meshList[1]->RenderMesh(shaderList[0].GetShaderID(), colors[1]);
 
         glUseProgram(0);
 
-        /* Swap front and back buffers */
+        ///* Swap front and back buffers */
         glfwSwapBuffers(window);
     }
 
     glfwTerminate();
+
     return 0;
 }
