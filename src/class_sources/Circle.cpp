@@ -9,15 +9,27 @@
 #include "../class_headers/Circle.h"
 
 
+
 Circle::Circle() {
     this->vx = 0;
     this->vy = 0;
     this->x = 0;
     this->y = 0;
-
+    this->vertices = new float[NUM_VERTICES_CIRCLE];
+ 
 }
 
+Circle::Circle(float x, float y, float vx, float vy) {
+    this->vx = vx;
+    this->vy = vy;
+    this->x = x;
+    this->y = y;
+    this->vertices = new float[NUM_VERTICES_CIRCLE];
+}
+
+
 Circle::~Circle() {
+    delete[] vertices;
     std::cout << "Object destructed" << std::endl;
 }
 
@@ -36,7 +48,7 @@ void Circle::initCircle(){
     vertices[1] = 0.f;
     vertices[2] = 0.f;
 
-    for (int ii = 3; ii <= NUM_VERTICES; ii += 3)
+    for (int ii = 3; ii < NUM_VERTICES_CIRCLE; ii += 3)
     {
         vertices[ii] = x;
         vertices[ii + 1] = y;

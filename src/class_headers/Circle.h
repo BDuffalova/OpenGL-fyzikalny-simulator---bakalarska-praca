@@ -1,16 +1,16 @@
-#define NUM_SEGMENTS 36
-#define NUM_VERTICES (NUM_SEGMENTS + 2) * 3
+#include "Settings.h"
 
 class Circle {
-private:
+public:
 	float vx;
 	float vy;
 	float x;
 	float y;
-	float vertices[NUM_VERTICES];
+	float* vertices;
 
 public:
 	Circle();
+	Circle(float x, float y, float vx, float vy);
 	~Circle();
 	void initCircle();
 	float* getVertices();

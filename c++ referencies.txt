@@ -1,0 +1,7 @@
+Here are some resources that might be helpful in implementing collision detection and resolution in OpenGL and C++:
+
+"Physics-Based Animation" by Kenny Erleben, Jon Sporring, and Kim S. Pedersen. This book covers collision detection and response in depth, and includes code samples in C++.
+
+"Collision Detection and Response with OpenGL" by Daniel Scherzer. This article provides an overview of collision detection and response in OpenGL, and includes sample code in C++.
+
+"Real-Time Collision Detection" by Christer Ericson. This book provides a comprehensive overview of collision detection algorithms, and includes code samples in C++.

@@ -41,7 +41,7 @@ void Mesh::CreateMesh(GLfloat* vertices, unsigned int numOfVertices)
     glBindVertexArray(0);
 }
 
-void Mesh::RenderMesh(GLuint shaderProgram, float * color)
+void Mesh::RenderMeshCircle(GLuint shaderProgram, float * color)
 {
  
     glBindVertexArray(VAO);
@@ -67,6 +67,17 @@ void Mesh::ClearMesh()
 
     indexCount = 0;
 }
+
+void Mesh::RenderMeshTable(GLuint shaderProgram, float* color)
+{
+
+    glBindVertexArray(VAO);
+    //glUniform1f(uniformMove , triOffSet); //get location of uniform value of xmove and set it to triOffset
+    glUniform4fv(glGetUniformLocation(shaderProgram, "unifColor"), 1, color);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    glBindVertexArray(0);
+}
+
 
 
 Mesh::~Mesh()

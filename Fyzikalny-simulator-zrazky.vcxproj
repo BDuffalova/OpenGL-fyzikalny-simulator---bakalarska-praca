@@ -150,6 +150,7 @@
     <ClCompile Include="src\class_sources\Circle.cpp" />
     <ClCompile Include="src\class_sources\Mesh.cpp" />
     <ClCompile Include="src\class_sources\Shader.cpp" />
+    <ClCompile Include="src\class_sources\Table.cpp" />
     <ClCompile Include="src\class_sources\Window.cpp" />
     <ClCompile Include="src\test.cpp" />
   </ItemGroup>
@@ -157,7 +158,9 @@
     <ClInclude Include="src\class_headers\Background.h" />
     <ClInclude Include="src\class_headers\Circle.h" />
     <ClInclude Include="src\class_headers\Mesh.h" />
+    <ClInclude Include="src\class_headers\Settings.h" />
     <ClInclude Include="src\class_headers\Shader.h" />
+    <ClInclude Include="src\class_headers\Table.h" />
     <ClInclude Include="src\class_headers\Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -166,7 +169,6 @@
     <Text Include="src\Shaders\shader_vertex.txt" />
     <Text Include="src\Shaders\test.txt" />
     <Text Include="src\shader_codes\shader_green.frag" />
-    <Text Include="src\shader_codes\shader_red.frag" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shader_codes\shader.vert" />

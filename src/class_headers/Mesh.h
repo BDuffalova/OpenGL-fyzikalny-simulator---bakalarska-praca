@@ -7,7 +7,8 @@ public:
 	Mesh();
 
 	void CreateMesh(GLfloat *vertices,unsigned int numOfVertices);
-	void RenderMesh(GLuint shaderProgram, float* color);
+	void RenderMeshCircle(GLuint shaderProgram, float* color);
+	void RenderMeshTable(GLuint shaderProgram, float* color);
 	void ClearMesh();
 
 	~Mesh();

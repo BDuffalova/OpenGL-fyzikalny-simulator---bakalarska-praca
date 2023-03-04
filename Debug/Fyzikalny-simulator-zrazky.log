@@ -1,2 +1,4 @@
 ﻿  test.cpp
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(155,42): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(156,42): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
   Fyzikalny-simulator-zrazky.vcxproj -> C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\Debug\Fyzikalny-simulator-zrazky.exe
