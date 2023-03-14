@@ -1,4 +1,32 @@
 ﻿  test.cpp
-C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(155,42): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(156,42): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(295,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(297,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(298,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(305,70): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(317,56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(329,73): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(341,59): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(361,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(362,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(364,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(365,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(401,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(402,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(404,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(405,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(409,107): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(410,107): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(412,107): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(413,107): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(415,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(416,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(418,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(419,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(422,64): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(423,64): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(87,36): warning C4101: 'dot_product': unreferenced local variable
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(87,83): warning C4101: 'v12_length': unreferenced local variable
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(87,49): warning C4101: 'r12_length': unreferenced local variable
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(87,72): warning C4101: 'sin_theta': unreferenced local variable
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(87,61): warning C4101: 'cos_theta': unreferenced local variable
   Fyzikalny-simulator-zrazky.vcxproj -> C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\Debug\Fyzikalny-simulator-zrazky.exe
