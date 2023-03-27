@@ -151,6 +151,7 @@
     <ClCompile Include="src\class_sources\Mesh.cpp" />
     <ClCompile Include="src\class_sources\Shader.cpp" />
     <ClCompile Include="src\class_sources\Table.cpp" />
+    <ClCompile Include="src\class_sources\Vector.cpp" />
     <ClCompile Include="src\class_sources\Window.cpp" />
     <ClCompile Include="src\test.cpp" />
   </ItemGroup>
@@ -161,6 +162,7 @@
     <ClInclude Include="src\class_headers\Settings.h" />
     <ClInclude Include="src\class_headers\Shader.h" />
     <ClInclude Include="src\class_headers\Table.h" />
+    <ClInclude Include="src\class_headers\Vector.h" />
     <ClInclude Include="src\class_headers\Window.h" />
   </ItemGroup>
   <ItemGroup>

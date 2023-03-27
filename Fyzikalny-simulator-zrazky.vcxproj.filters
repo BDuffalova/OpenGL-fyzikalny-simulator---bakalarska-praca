@@ -39,6 +39,9 @@
     <ClCompile Include="src\class_sources\Table.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\class_sources\Vector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\class_headers\Shader.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\class_headers\Settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\class_headers\Vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

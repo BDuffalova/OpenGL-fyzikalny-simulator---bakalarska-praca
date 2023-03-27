@@ -1,16 +1,40 @@
-﻿  Application.cpp
-  Background.cpp
-  Circle.cpp
-C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\class_sources\Circle.cpp(26,54): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\class_sources\Circle.cpp(31,18): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Mesh.cpp
-  Shader.cpp
-  Window.cpp
+﻿  Mesh.cpp
   test.cpp
-  Previous IPDB not found, fall back to full compilation.
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(210,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(212,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(213,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(220,70): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(232,56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(244,73): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(256,59): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(276,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(277,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(279,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(280,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(316,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(317,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(319,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(320,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(324,107): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(325,107): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(327,107): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(328,107): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(330,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(331,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(333,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(334,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(337,64): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(338,64): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(89,36): warning C4101: 'dot_product': unreferenced local variable
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(89,83): warning C4101: 'v12_length': unreferenced local variable
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(89,49): warning C4101: 'r12_length': unreferenced local variable
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(89,72): warning C4101: 'sin_theta': unreferenced local variable
+C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\src\test.cpp(89,61): warning C4101: 'cos_theta': unreferenced local variable
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  All 336 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  2 of 366 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-glew32s.lib(glew.obj) : warning LNK4099: PDB '' was not found with 'glew32s.lib(glew.obj)' or at ''; linking object as if no debug info
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\Release\vc120.pdb'; linking object as if no debug info
   Fyzikalny-simulator-zrazky.vcxproj -> C:\Users\duffa\OneDrive\Počítač\fei\openGL\BP\Fyzikalny-simulator-zrazky\Release\Fyzikalny-simulator-zrazky.exe

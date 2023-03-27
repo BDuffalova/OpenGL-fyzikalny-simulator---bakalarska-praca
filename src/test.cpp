@@ -15,6 +15,7 @@
 #include "class_headers/Table.h"
 #include "class_headers/Mesh.h"
 #include "class_headers/Shader.h"
+#include "class_headers/Vector.h"
 
 
 
@@ -22,6 +23,7 @@
 //const GLint WIDTH = 800, HEIGHT = 600;
 std::vector<Mesh*> meshList;
 std::vector<Circle*> circleList;
+std::vector<Vector*> velocityList;
 GLuint uniformMove = 0;
 Shader* shader;
 bool direction = true; //true = right, false = left
@@ -31,7 +33,7 @@ float triIncrement = 0.0005f; //increment of position in each step
 //GLfloat * vertices;
 
 float colors[][4] = { {0.48f, 0.156f, 0.41f, 1.f},{0.784f, 0.36f, 0.556f, 1.f}, {0.7f, 0.89f, 1.f, 1.f} };
-
+float points[] = { 0.f, 0.f, 0.f,  380.f,380.f, 0.f,  385.f,385.f, 0.f, 5.f, 5.f, 0.f };
 
 
 
@@ -78,7 +80,7 @@ double timeToCollision(double x1, double y1, double vx1, double vy1, double x2, 
 int main(void)
 {
 	bool colided = false;
-	float scale = 65.f;
+	float scale = 25.f;
 	float radius = 0.2f * scale;
 	float x_tmp = 0.f;
 	float y_tmp = 0.f;
@@ -104,11 +106,13 @@ int main(void)
 	circleList.push_back(circle2);
 
 
-	Table table;
+	Table* table = new Table();
+	Vector* line = new Vector();
 
 	Mesh* objCircle1 = new Mesh();
 	Mesh* objCircle2 = new Mesh();
 	Mesh* objTable = new Mesh();
+	Mesh* lineObj = new Mesh();
 
 	/* Initialize the library */
 	if (!glfwInit())
@@ -172,10 +176,12 @@ int main(void)
 	/* Loop until the user closes the window */
 	objCircle1->CreateMesh(circle1->getVertices(), NUM_VERTICES_CIRCLE);
 	objCircle2->CreateMesh(circle2->getVertices(), NUM_VERTICES_CIRCLE);
-	objTable->CreateMesh(table.getVertices(), NUM_VERTICES_TABLE);
+	objTable->CreateMesh(table->getVertices(), NUM_VERTICES_TABLE);
+	lineObj->CreateMesh(line->getVertices(), NUM_VERTICES_TABLE);
 	meshList.push_back(objCircle1);
 	meshList.push_back(objCircle2);
 	meshList.push_back(objTable);
+	meshList.push_back(lineObj);
 	CreateShaders();
 	/*CreateTriangle();*/
 	/*CompileShaders(shader2, fShader2);*/
@@ -189,11 +195,7 @@ int main(void)
 		glClearColor(1.f, 0.73f, 0.73f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		//CALCULATIONS
-/*		circle1->x += elapsed_time * circle1->vx;
-		circle1->y += elapsed_time * circle1->vy;
 
-		circle2->x += elapsed_time * circle2->vx;
-		circle2->y += elapsed_time * circle2->vy;*/
 		
 		shader->UseShader();
 
@@ -204,93 +206,6 @@ int main(void)
 		glUniformMatrix4fv(uniformMove, 1, GL_FALSE, glm::value_ptr(projection)); //FALSE to transpose -> no fliping along the diagonal axis
 		meshList[2]->RenderMeshTable(shader->GetShaderID(), colors[2]);
 
-		//r12_x = circleList.at(1)->x - circleList.at(0)->x;
-		//r12_y = circleList.at(1)->y - circleList.at(0)->y;
-
-		//v12_x = circleList.at(1)->vx - circleList.at(0)->vx;
-		//v12_y = circleList.at(1)->vy - circleList.at(0)->vy;
-
-		//dot_product = r12_x * v12_x + r12_y * v12_y;
-
-		//// Calculate length of relative position vector
-		//r12_length = sqrt(pow(r12_x, 2) + pow(r12_y, 2));
-
-		//// Calculate length of relative velocity vector
-		//v12_length = sqrt(pow(v12_x, 2) + pow(v12_y, 2));
-
-		//// Calculate cosine of angle between relative position and velocity vectors
-		//cos_theta = dot_product / (r12_length * v12_length);
-
-		//// Calculate sin of angle between relative position and velocity vectors
-		//sin_theta = sqrt(1 - pow(cos_theta, 2));
-
-		//colision_distance = sqrt(pow(circleList.at(0)->x - circleList.at(1)->x, 2) + pow(circleList.at(0)->y - circleList.at(1)->y, 2));
-		//relative_velocity_x = v12_length * cos_theta * r12_x / r12_length - v12_length * sin_theta * r12_y / r12_length;
-		//relative_velocity_y = v12_length * cos_theta * r12_y / r12_length + v12_length * sin_theta * r12_x / r12_length;
-		//colision_time = (colision_distance - 2 * radius) / sqrt(pow(relative_velocity_x, 2) + pow(relative_velocity_y, 2));
-
-		/*if (r12_length < 2 * radius) {
-		
-			x_tmp = circleList.at(0)->x + elapsed_time * circleList.at(0)->vx;
-			y_tmp = circleList.at(0)->y + elapsed_time * circleList.at(0)->vy;
-
-			x_tmp2 = circleList.at(1)->x + elapsed_time * circleList.at(1)->vx;
-			y_tmp2 = circleList.at(1)->y + elapsed_time * circleList.at(1)->vy;
-
-			colision_distance = 2 * radius - r12_length;
-			relative_velocity_x = v12_length * cos_theta * r12_x / r12_length - v12_length * sin_theta * r12_y / r12_length;
-			relative_velocity_y = v12_length * cos_theta * r12_y / r12_length + v12_length * sin_theta * r12_x / r12_length;
-			colision_time = colision_distance / sqrt(pow(relative_velocity_x, 2) + pow(relative_velocity_y, 2));
-
-			circleList.at(0)->x += colision_time * circleList.at(0)->vx * -1;
-			circleList.at(0)->y += colision_time * circleList.at(0)->vy * -1;
-
-			circleList.at(1)->x += colision_time * circleList.at(1)->vx * -1;
-			circleList.at(1)->y += colision_time * circleList.at(1)->vy * -1;
-
-			colision_time = abs(elapsed_time - colision_time);
-			std::cout << "colision time: " << colision_time << std::endl;
-			std::cout << "elapsed time: " << elapsed_time << std::endl;
-
-			circleList.at(0)->vx += ((r12_x * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x, 2) + pow(r12_y, 2)));
-			circleList.at(1)->vx -= ((r12_x * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x, 2) + pow(r12_y, 2)));
-
-			circleList.at(0)->vy += ((r12_y * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x, 2) + pow(r12_y, 2)));
-			circleList.at(1)->vy -= ((r12_y * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x, 2) + pow(r12_y, 2)));
-
-			circleList.at(0)->x += 0.001 * circleList.at(0)->vx;
-			circleList.at(0)->y += 0.001 * circleList.at(0)->vy;
-
-			circleList.at(1)->x += 0.001 * circleList.at(1)->vx;
-			circleList.at(1)->y += 0.001 * circleList.at(1)->vy;
-
-			colided = true;
-
-		}*/
-		
-		//if (colision_time <= elapsed_time && colision_time > 0) {
-		//	x_tmp = circleList.at(0)->x + colision_time * circleList.at(0)->vx;
-		//	y_tmp = circleList.at(0)->y + colision_time * circleList.at(0)->vy;
-
-		//	x_tmp2 = circleList.at(1)->x + colision_time * circleList.at(1)->vx;
-		//	y_tmp2 = circleList.at(1)->y + colision_time * circleList.at(1)->vy;
-
-		//	colision_time = abs(elapsed_time - colision_time);
-
-		//	circleList.at(0)->vx += ((r12_x * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x,2) + pow(r12_y,2)));
-		//	circleList.at(1)->vx -= ((r12_x * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x, 2) + pow(r12_y, 2)));
-
-		//	circleList.at(0)->vy += ((r12_y * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x, 2) + pow(r12_y, 2)));
-		//	circleList.at(1)->vy -= ((r12_y * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x, 2) + pow(r12_y, 2)));
-
-		//	circleList.at(0)->x = x_tmp + colision_time * circleList.at(0)->vx;
-		//	circleList.at(0)->y = y_tmp + colision_time * circleList.at(0)->vy;
-
-		//	circleList.at(1)->x = x_tmp2 + colision_time * circleList.at(1)->vx;
-		//	circleList.at(1)->y = y_tmp2 + colision_time * circleList.at(1)->vy;
-		//	colided = true;
-
-		//}
 
 		for (int x{ 0 }; x < circleList.size(); x++)
 		{
@@ -435,8 +350,12 @@ int main(void)
 			meshList[x]->RenderMeshCircle(shader->GetShaderID(), colors[x]);
 		}
 		//
-
-
+		float linecolor[] = { 1.f,0.f,0.f,1.f };
+		model = glm::mat4();
+		model = glm::scale(glm::mat4(1.0f), glm::vec3(5.f, 5.f, 0.0f));
+		transform = projection * model;
+		glUniformMatrix4fv(uniformMove, 1, GL_FALSE, glm::value_ptr(transform)); //FALSE to transpose -> no fliping along the diagonal axis
+		meshList[3]->RenderMeshVector(shader->GetShaderID(), linecolor);
 		//model = glm::mat4();
 		//model = glm::translate(glm::mat4(1.0f), glm::vec3(circle1->x, circle1->y, 0.0f)) * glm::scale(glm::mat4(1.0f), glm::vec3(15.f, 15.f, 0.0f));
 		//transform = projection * model;

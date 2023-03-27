@@ -78,6 +78,16 @@ void Mesh::RenderMeshTable(GLuint shaderProgram, float* color)
     glBindVertexArray(0);
 }
 
+void Mesh::RenderMeshVector(GLuint shaderProgram, float* color)
+{
+    glBindVertexArray(VAO);
+    //glUniform1f(uniformMove , triOffSet); //get location of uniform value of xmove and set it to triOffset
+    glUniform4fv(glGetUniformLocation(shaderProgram, "unifColor"), 1, color);
+    glDrawArrays(GL_LINE_STRIP, 0, 2);
+    glBindVertexArray(0);
+
+}
+
 
 
 Mesh::~Mesh()
