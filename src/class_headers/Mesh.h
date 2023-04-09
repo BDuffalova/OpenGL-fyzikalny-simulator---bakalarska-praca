@@ -11,6 +11,7 @@ public:
 	void RenderMeshTable(GLuint shaderProgram, float* color);
 	void RenderMeshVector(GLuint shaderProgram, float* color);
 	void ClearMesh();
+	void UpdateMesh(GLfloat* vertices, unsigned int numOfVertices);
 
 	~Mesh();
 

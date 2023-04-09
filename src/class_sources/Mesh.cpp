@@ -15,7 +15,7 @@ Mesh::Mesh()
 
 void Mesh::CreateMesh(GLfloat* vertices, unsigned int numOfVertices)
 {
-	indexCount = numOfVertices;
+	//indexCount = numOfVertices;
 
     //vstupy sú poèet polí ktoré chceme vytvori a referenciu na premennú do ktorej chceme uchova ID 
     //definuje priestor v pamäti, kde sa vytvorí vertex array a vráti jej id
@@ -29,7 +29,7 @@ void Mesh::CreateMesh(GLfloat* vertices, unsigned int numOfVertices)
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     //prvé je target, druhé je ve¾kos obsahu ktorı budeme vklada, tretie sú dáta ktoré chceme poui, static draw znamená, e hodnoty
     //ktoré budeme vklada sa nebudú meni, ak sa hodnoty budú meni tak sa pouije dynamic draw
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * numOfVertices, vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * numOfVertices, vertices, GL_DYNAMIC_DRAW);
 
     /*lokácia atribútu ktorı chceme kresli, poèet dimenzií/hodnôt ktoré sa spracujú naraz, typ hodnoty ktorá vstupuje do súradníc vrchola
     štvrtá hodnota znaèí, èi sa majú hodnoty normalizova, piata koo¾ko hodnôt sa má preskoèi, poslednı je offfset*/
@@ -85,6 +85,14 @@ void Mesh::RenderMeshVector(GLuint shaderProgram, float* color)
     glUniform4fv(glGetUniformLocation(shaderProgram, "unifColor"), 1, color);
     glDrawArrays(GL_LINE_STRIP, 0, 2);
     glBindVertexArray(0);
+
+}
+
+void Mesh::UpdateMesh(GLfloat* vertices, unsigned int numOfVertices)
+{
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * numOfVertices, vertices, GL_DYNAMIC_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 }
 

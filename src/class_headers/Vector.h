@@ -3,13 +3,11 @@
 
 class Vector {
 private:
-	float x;
-	float y;
 	float* vertices;
 
 
 public:
-	Vector();
+	Vector(float vx, float vy);
 	~Vector();
 	float getX();
 	float getY();

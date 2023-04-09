@@ -3,8 +3,8 @@
 
 
 
-Vector::Vector() {
-	float points[] = { 0.f, 0.f, 0.f,  50.f,50.f, 0.f,  75.f,85.f, 0.f, 10.f, 50.f, 0.f };
+Vector::Vector(float vx, float vy) {
+	float points[] = { 0.f, 0.f, 0.f,  vx, vy, 0.f};
 	this->vertices = new float[NUM_VERTICES_TABLE];
 	for (int i = 0; i < 12; i++) {
 		vertices[i] = points[i];
