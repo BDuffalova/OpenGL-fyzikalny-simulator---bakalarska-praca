@@ -16,6 +16,7 @@ Circle::Circle() {
     this->x = 0;
     this->y = 0;
     this->vertices = new float[NUM_VERTICES_CIRCLE];
+    this->time = 0;
  
 }
 

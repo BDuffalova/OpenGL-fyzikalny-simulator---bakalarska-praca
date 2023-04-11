@@ -80,8 +80,10 @@ double timeToCollision(double x1, double y1, double vx1, double vy1, double x2, 
 
 int main(void)
 {
+	float points[] = { 0.f, 0.f, 0.f,  5.f, 10.f, 0.f, 5.f, 5.f, 0.f, 10.f, 10.f, 0.f };
+	float* pointer = points;
 	bool colided = false;
-	float scale = 25.f;
+	float scale = 55.f;
 	float radius = 0.2f * scale;
 	float x_tmp = 0.f;
 	float y_tmp = 0.f;
@@ -97,10 +99,10 @@ int main(void)
 	clock_t end_time;
 	GLFWwindow* window;
 
-	Circle* circle1 = new Circle(30.f, 30.f, 50.f, 28.f);
+	Circle* circle1 = new Circle(30.f, 30.f, 20.f, 38.f);
 	circle1->initCircle();
 
-	Circle* circle2 = new Circle(70.f, 70.f, -10.f, -40.f);
+	Circle* circle2 = new Circle(70.f, 70.f, -10.f, 20.f);
 	circle2->initCircle();
 
 	circleList.push_back(circle1);
@@ -108,7 +110,7 @@ int main(void)
 
 
 	Table* table = new Table();
-	Vector* velocityCircle1 = new Vector(circle1->vx,circle1->vy);
+	Vector* velocityCircle1 = new Vector(circle1->vx, circle1->vy);
 	Vector* velocityCircle2 = new Vector(circle2->vx, circle2->vy);
 
 	velocityList.push_back(velocityCircle1);
@@ -119,6 +121,7 @@ int main(void)
 	Mesh* objTable = new Mesh();
 	Mesh* velocityCircle1Obj1 = new Mesh();
 	Mesh* velocityCircle1Obj2 = new Mesh();
+	Mesh* test = new Mesh();
 
 	/* Initialize the library */
 	if (!glfwInit())
@@ -183,6 +186,7 @@ int main(void)
 	objCircle1->CreateMesh(circle1->getVertices(), NUM_VERTICES_CIRCLE);
 	objCircle2->CreateMesh(circle2->getVertices(), NUM_VERTICES_CIRCLE);
 	objTable->CreateMesh(table->getVertices(), NUM_VERTICES_TABLE);
+	test->CreateMesh(points, 12);
 	velocityCircle1Obj1->CreateMesh(velocityCircle1->getVertices(), 6);
 	velocityCircle1Obj2->CreateMesh(velocityCircle2->getVertices(), 6);
 	meshListCircle.push_back(objCircle1);
@@ -204,7 +208,7 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT);
 		//CALCULATIONS
 
-		
+
 		shader->UseShader();
 
 		uniformMove = shader->GetModelLocation();
@@ -219,12 +223,14 @@ int main(void)
 		{
 			x_tmp = circleList.at(x)->x + elapsed_time * circleList.at(x)->vx;
 			y_tmp = circleList.at(x)->y + elapsed_time * circleList.at(x)->vy;
+			circleList.at(x)->time = elapsed_time;
 			if (x_tmp + radius > TABLE_OFFSET_LEFT + WIDTH_TABLE)
 			{
 				colision_distance = (TABLE_OFFSET_LEFT + WIDTH_TABLE) - (circleList.at(x)->x + radius);
 				colision_time = colision_distance / circleList.at(x)->vx;
-				colision_time = elapsed_time - colision_time;
-				elapsed_time = elapsed_time - colision_time;
+				colision_time = circleList.at(x)->time - colision_time;
+				circleList.at(x)->time = elapsed_time - colision_time;
+				/*elapsed_time = elapsed_time - colision_time;*/
 				circleList.at(x)->vx *= -1;
 				circleList.at(x)->x = (TABLE_OFFSET_LEFT + WIDTH_TABLE - radius) + colision_time * circleList.at(x)->vx;
 				x_tmp = circleList.at(x)->x;
@@ -236,8 +242,9 @@ int main(void)
 			{
 				colision_distance = (circleList.at(x)->x - radius) - TABLE_OFFSET_LEFT;
 				colision_time = colision_distance / circleList.at(x)->vx;
-				colision_time = elapsed_time - colision_time;
-				elapsed_time = elapsed_time - colision_time;
+				colision_time = circleList.at(x)->time - colision_time;
+				circleList.at(x)->time = elapsed_time - colision_time;
+				//elapsed_time = elapsed_time - colision_time;
 				circleList.at(x)->vx *= -1;
 				circleList.at(x)->x = (TABLE_OFFSET_LEFT + radius) + colision_time * circleList.at(x)->vx;
 				x_tmp = circleList.at(x)->x;
@@ -249,8 +256,9 @@ int main(void)
 			{
 				colision_distance = (TABLE_OFFSET_BOTTOM + HEIGHT_TABLE) - (circleList.at(x)->y + radius);
 				colision_time = colision_distance / circleList.at(x)->vy;
-				colision_time = elapsed_time - colision_time;
-				elapsed_time = elapsed_time - colision_time;
+				colision_time = circleList.at(x)->time - colision_time;
+				circleList.at(x)->time = elapsed_time - colision_time;
+				//elapsed_time = elapsed_time - colision_time;
 				circleList.at(x)->vy *= -1;
 				circleList.at(x)->y = (TABLE_OFFSET_BOTTOM + HEIGHT_TABLE - radius) + colision_time * circleList.at(x)->vy;
 				y_tmp = circleList.at(x)->y;
@@ -262,10 +270,11 @@ int main(void)
 			{
 				colision_distance = (circleList.at(x)->y - radius) - TABLE_OFFSET_BOTTOM;
 				colision_time = colision_distance / circleList.at(x)->vy;
-				colision_time = elapsed_time - colision_time;
-				elapsed_time = elapsed_time - colision_time;
+				colision_time = circleList.at(x)->time - colision_time;
+				circleList.at(x)->time = elapsed_time - colision_time;
+				//elapsed_time = elapsed_time - colision_time;
 				circleList.at(x)->vy *= -1;
-				circleList.at(x)->x = (TABLE_OFFSET_BOTTOM + radius)  + colision_time * circleList.at(x)->vy;
+				circleList.at(x)->y = (TABLE_OFFSET_BOTTOM + radius) + colision_time * circleList.at(x)->vy;
 				y_tmp = circleList.at(x)->y;
 				circleList.at(x)->x = x_tmp;
 				colided = true;
@@ -277,58 +286,51 @@ int main(void)
 				colided = true;
 			}
 
-			if (circleList.at(x)->y + radius == TABLE_OFFSET_BOTTOM + HEIGHT_TABLE || circleList.at(x)->y - radius  == TABLE_OFFSET_BOTTOM)
+			if (circleList.at(x)->y + radius == TABLE_OFFSET_BOTTOM + HEIGHT_TABLE || circleList.at(x)->y - radius == TABLE_OFFSET_BOTTOM)
 			{
 				circleList.at(x)->vy *= -1;
 				colided = true;
 			}
+		}
+
+		colision_time = timeToCollision(circleList.at(0)->x, circleList.at(0)->y, circleList.at(0)->vx, circleList.at(0)->vy, circleList.at(1)->x, circleList.at(1)->y, circleList.at(1)->vx, circleList.at(1)->vy, 2 * radius);
+		if (colision_time < elapsed_time && colision_time > 0) {
+			x_tmp = circleList.at(0)->x + colision_time * circleList.at(0)->vx;
+			y_tmp = circleList.at(0)->y + colision_time * circleList.at(0)->vy;
+
+			x_tmp2 = circleList.at(1)->x + colision_time * circleList.at(1)->vx;
+			y_tmp2 = circleList.at(1)->y + colision_time * circleList.at(1)->vy;
+
+			r12_x = x_tmp2 - x_tmp;
+			r12_y = y_tmp2 - y_tmp;
+
+			v12_x = circleList.at(1)->vx - circleList.at(0)->vx;
+			v12_y = circleList.at(1)->vy - circleList.at(0)->vy;
+
+			colision_time = abs(elapsed_time - colision_time);
+
+			circleList.at(0)->vx += ((r12_x * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x, 2) + pow(r12_y, 2)));
+			circleList.at(1)->vx -= ((r12_x * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x, 2) + pow(r12_y, 2)));
+
+			circleList.at(0)->vy += ((r12_y * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x, 2) + pow(r12_y, 2)));
+			circleList.at(1)->vy -= ((r12_y * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x, 2) + pow(r12_y, 2)));
+
+			circleList.at(0)->x = x_tmp + colision_time * circleList.at(0)->vx;
+			circleList.at(0)->y = y_tmp + colision_time * circleList.at(0)->vy;
+
+			circleList.at(1)->x = x_tmp2 + colision_time * circleList.at(1)->vx;
+			circleList.at(1)->y = y_tmp2 + colision_time * circleList.at(1)->vy;
+		}
+		else {
+			circleList.at(0)->x += elapsed_time * circleList.at(0)->vx;
+			circleList.at(0)->y += elapsed_time * circleList.at(0)->vy;
+			circleList.at(1)->x += elapsed_time * circleList.at(1)->vx;
+			circleList.at(1)->y += elapsed_time * circleList.at(1)->vy;
+		}
 
 
-			if (!colided) {
-				x_tmp = circleList.at(0)->x + elapsed_time * circleList.at(0)->vx;
-				y_tmp = circleList.at(0)->y + elapsed_time * circleList.at(0)->vy;
-
-				x_tmp2 = circleList.at(1)->x + elapsed_time * circleList.at(1)->vx;
-				y_tmp2 = circleList.at(1)->y + elapsed_time * circleList.at(1)->vy;
-
-				r12_x = circleList.at(1)->x - circleList.at(0)->x;
-				r12_y = circleList.at(1)->y - circleList.at(0)->y;
-
-				v12_x = circleList.at(1)->vx - circleList.at(0)->vx;
-				v12_y = circleList.at(1)->vy - circleList.at(0)->vy;
-
-				colision_time = timeToCollision(circleList.at(0)->x, circleList.at(0)->y, circleList.at(0)->vx, circleList.at(0)->vy, circleList.at(1)->x, circleList.at(1)->y, circleList.at(1)->vx, circleList.at(1)->vy, 2*radius);
-				if (colision_time <= elapsed_time && colision_time > 0) {
-					x_tmp = circleList.at(0)->x + colision_time * circleList.at(0)->vx;
-					y_tmp = circleList.at(0)->y + colision_time * circleList.at(0)->vy;
-
-					x_tmp2 = circleList.at(1)->x + colision_time * circleList.at(1)->vx;
-					y_tmp2 = circleList.at(1)->y + colision_time * circleList.at(1)->vy;
-
-					colision_time = abs(elapsed_time - colision_time);
-
-					circleList.at(0)->vx += ((r12_x * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x, 2) + pow(r12_y, 2)));
-					circleList.at(1)->vx -= ((r12_x * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x, 2) + pow(r12_y, 2)));
-
-					circleList.at(0)->vy += ((r12_y * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x, 2) + pow(r12_y, 2)));
-					circleList.at(1)->vy -= ((r12_y * (r12_x * v12_x + r12_y * v12_y)) / (pow(r12_x, 2) + pow(r12_y, 2)));
-
-					circleList.at(0)->x = x_tmp + colision_time * circleList.at(0)->vx;
-					circleList.at(0)->y = y_tmp + colision_time * circleList.at(0)->vy;
-
-					circleList.at(1)->x = x_tmp2 + colision_time * circleList.at(1)->vx;
-					circleList.at(1)->y = y_tmp2 + colision_time * circleList.at(1)->vy;
-				}
-				else {
-					circleList.at(x)->x += elapsed_time * circleList.at(x)->vx;
-					circleList.at(x)->y += elapsed_time * circleList.at(x)->vy;
-				}
-
-		
-			}
-
-			colided = false;
-
+		for (int x{ 0 }; x < circleList.size(); x++)
+		{
 			model = glm::mat4();
 			model = glm::translate(glm::mat4(1.0f), glm::vec3(circleList.at(x)->x, circleList.at(x)->y, 0.0f)) * glm::scale(glm::mat4(1.0f), glm::vec3(scale, scale, 0.0f));
 			transform = projection * model;
@@ -338,14 +340,16 @@ int main(void)
 			float velocityCircle1color[] = { 0.f,0.f,1.f,1.f };
 			velocityList.at(x)->getVertices()[3] = circleList.at(x)->vx;
 			velocityList.at(x)->getVertices()[4] = circleList.at(x)->vy;
-			meshListVelocity[x]->UpdateMesh(velocityList.at(x)->getVertices(), 6);
+			meshListVelocity[x]->UpdateMesh(velocityList.at(x)->getVertices(), 12);
 			model = glm::mat4();
 			model = glm::translate(glm::mat4(1.0f), glm::vec3(circleList.at(x)->x, circleList.at(x)->y, 0.0f)) * glm::scale(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.0f));
 			transform = projection * model;
 			glUniformMatrix4fv(uniformMove, 1, GL_FALSE, glm::value_ptr(transform)); //FALSE to transpose -> no fliping along the diagonal axis
+
 			meshListVelocity[x]->RenderMeshVector(shader->GetShaderID(), velocityCircle1color);
 		}
-		
+
+
 		glUseProgram(0);
 
 
@@ -399,8 +403,3 @@ int main(void)
 //
 //Note that this code assumes that the vector is pointing from the first point(x1, y1) to the second point(x2, y2).If the vector is pointing in the opposite direction, you'll need to reverse the roles of (x1, y1) and (x2, y2) in the code above.
 //
-
-
-
-
-

@@ -7,6 +7,7 @@ public:
 	float x;
 	float y;
 	float* vertices;
+	float time;
 
 public:
 	Circle();
