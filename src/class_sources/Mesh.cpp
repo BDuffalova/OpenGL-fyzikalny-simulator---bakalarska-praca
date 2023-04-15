@@ -15,8 +15,6 @@ Mesh::Mesh()
 
 void Mesh::CreateMesh(GLfloat* vertices, unsigned int numOfVertices)
 {
-	//indexCount = numOfVertices;
-
 	//vstupy s˙ poËet polÌ ktorÈ chceme vytvoriù a referenciu na premenn˙ do ktorej chceme uchovaù ID 
 	//definuje priestor v pam‰ti, kde sa vytvorÌ vertex array a vr·ti jej id
 	glGenVertexArrays(1, &VAO);
@@ -45,7 +43,6 @@ void Mesh::RenderMeshCircle(GLuint shaderProgram, float* color)
 {
 
 	glBindVertexArray(VAO);
-	//glUniform1f(uniformMove , triOffSet); //get location of uniform value of xmove and set it to triOffset
 	glUniform4fv(glGetUniformLocation(shaderProgram, "unifColor"), 1, color);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, NUM_SEGMENTS + 2);
 	glBindVertexArray(0);
@@ -72,7 +69,6 @@ void Mesh::RenderMeshTable(GLuint shaderProgram, float* color)
 {
 
 	glBindVertexArray(VAO);
-	//glUniform1f(uniformMove , triOffSet); //get location of uniform value of xmove and set it to triOffset
 	glUniform4fv(glGetUniformLocation(shaderProgram, "unifColor"), 1, color);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	glBindVertexArray(0);
@@ -81,33 +77,23 @@ void Mesh::RenderMeshTable(GLuint shaderProgram, float* color)
 void Mesh::RenderMeshVector(GLuint shaderProgram, float* color)
 {
 	glBindVertexArray(VAO);
-	////glUniform1f(uniformMove , triOffSet); //get location of uniform value of xmove and set it to triOffset
 	glUniform4fv(glGetUniformLocation(shaderProgram, "unifColor"), 1, color);
 	glDrawArrays(GL_LINE_STRIP, 0, 2);
 	glBindVertexArray(0);
-	//glBindVertexArray(VAO);
-	////glUniform1f(uniformMove , triOffSet); //get location of uniform value of xmove and set it to triOffset
-	//glUniform4fv(glGetUniformLocation(shaderProgram, "unifColor"), 1, color);
-	//glDrawArrays(GL_TRIANGLE_FAN, 1, 3);
-	//glBindVertexArray(0);
+
+	glBindVertexArray(VAO);
+	glUniform4fv(glGetUniformLocation(shaderProgram, "unifColor"), 1, color);
+	glDrawArrays(GL_TRIANGLE_FAN, 1, 3);
+	glBindVertexArray(0);
 
 }
 
-void Mesh::UpdateMesh(GLfloat* vertices, unsigned int numOfVertices)
+void Mesh::UpdateMesh(GLfloat* vertices, float vx, float vy, unsigned int numOfVertices)
 {
-	//float angle = atan2(vertices[3], vertices[4]);
-
-	////// Convert to degrees
-	////angle = angle * 180 / 3.14;
-	//float x3 = vertices[3]- 5 * sin(angle);
-	//float y3 = vertices[4] + 5 * cos(angle);
-	//float x4 = vertices[3] + 5 * sin(angle);
-	//float y4 = vertices[4] - 5 * cos(angle);
-
-	//vertices[6] = x3;
-	//vertices[7] = y3;
-	//vertices[9] = x4;
-	//vertices[3] = y4;
+	float v = sqrt((pow(vx, 2) + pow(vy, 2)));
+	vertices[3] = v;
+	vertices[6] = v - 3;
+	vertices[9] = v - 3;
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * numOfVertices, vertices, GL_DYNAMIC_DRAW);
